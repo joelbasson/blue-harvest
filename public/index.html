@@ -1,0 +1,93 @@
+<!doctype html>
+
+<html ng-app="blue-harvest">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Blue Harvest Banking</title>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="modules/controllers/MainController.js"></script>
+    <script src="modules/services/BlueHarvestService.js"></script>
+
+</head>
+
+<body ng-controller="MainController">
+    <div class="container">
+
+        <div class="lead text-center">
+            <h1>Blue Harvest Banking</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <form>
+                        <div class="form-group">
+                            <label for="newFirstName">First Name</label>
+                            <input type="text" id="newFirstName" class="form-control" ng-model="newFirstName">
+                        </div>
+                        <div class="form-group">
+                            <label for="newLastName">Surname</label>
+                            <input type="text" id="newLastName" class="form-control" ng-model="newLastName">
+                        </div>
+                        <button class="btn btn-primary" ng-click="addCustomer()">NEW CUSTOMER</button>
+                    </form>
+                </div>
+                <div class="card" ng-repeat="customer in customers">
+                    <h3>{{ customer.firstName }} {{ customer.lastName }}</h3>
+                    <p class="title">Customer ID : {{ customer.id }}</p>
+                    <h4>Accounts</h4>
+                    <div ng-show="customer.accounts.length == 0">
+                        <hr/>
+                        <p>No accounts</p>
+                    </div>
+                    <div ng-repeat="account in customer.accounts">
+                        <hr/>
+                        <div class="col-md-6 account-item">Account Name :</div><div class="col-md-6 account-item">{{ account.accountName }}</div>
+                        <div class="col-md-6 account-item">Type :</div><div class="col-md-6 account-item">{{ account.isPrimary == true && 'Primary' || 'Secondry' }}</div>
+                        <div class="col-md-6 account-item">Balance :</div><div class="col-md-6 account-item">{{ account.balance }}</div>
+                        <div class="spacer"></div>
+                        <h4>Transactions</h4>
+                        <div ng-repeat="transaction in account.transactions">
+                            <hr/>
+                            <div class="col-md-6">{{ transaction.name }}</div>
+                            <div class="col-md-6">{{ transaction.value }}</div>
+                        </div>
+                        <div class="spacer"></div>
+                    </div>
+                    <hr/>
+                    <div class="new-account">
+                        <p class="title">New Account</p>
+                        <hr/>
+                        <form>
+                            <div class="form-group">
+                                <label for="newInitalCredit">Initial Credit</label>
+                                <input type="text" id="newInitalCredit" class="form-control" ng-model="customer.newInitalCredit">
+                            </div>
+                            <button class="btn btn-primary" ng-click="addAccount(customer)">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+        <div class="row">
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
