@@ -6,12 +6,12 @@ const Transaction = require("../models/transaction.js");
 
 /* POST Create a Transaction */
 router.post('/', function (req, res, next) {
-    let customerId = req.body.customerId;
+    let accountId = req.body.accountId;
     let value = req.body.value;
     let name = req.body.name;
 
-    if (customerId == undefined || name == undefined)
-        return res.json(400, {message : 'customerId and name are required'});
+    if (accountId == undefined || name == undefined)
+        return res.json(400, {message : 'accountId and name are required'});
 
     if (value == undefined)
         return res.json(400, {message : 'value is required'});
@@ -23,7 +23,7 @@ router.post('/', function (req, res, next) {
     value = parseInt(value);
   
     //Assume account can go into credit
-    Transaction.create(customerId, value, name, function (error, transaction) {
+    Transaction.create(accountId, value, name, function (error, transaction) {
         if (error)  return res.json(400, error);
 
         return res.json(transaction);

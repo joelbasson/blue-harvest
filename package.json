@@ -4,7 +4,7 @@
   "description": "Blue Harvest banking",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/accountControllerTests.js"
   },
   "devDependencies": {
     "mocha": "^2.5.3",

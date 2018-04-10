@@ -1,6 +1,16 @@
 # Blue Harvest simple banking service
 
-This is a lightweight Node.JS app for similuating a simplae banking service
+This is a lightweight Node.JS app for similuating a simple banking service.
+
+## Setup
+
+Clone this repository and then you can install dependencies with npm
+
+### git
+
+```shell
+git clone https://github.com/joelbasson/blue-harvest
+```
 
 ### npm
 
@@ -17,13 +27,13 @@ node index.js
 ```
 
 ## User Interface
-There is a basic user interface at http://localhost:8080/
+There is a very basic (AngularJS) user interface at http://localhost:8080/
 
-### Make Requests
+## Make Requests
 
 You can do HTTP REST requests as follows
 
-##### Customer
+#### Customer
 ```
 http POST http://localhost:8080/customers
 Content-Type: application/json
@@ -41,7 +51,7 @@ http GET http://localhost:8080/customers
 http GET http://localhost:8080/customers/1
 ```
 
-##### Account
+#### Account
 ```
 http POST http://localhost:8080/accounts
 Content-Type: application/json
@@ -50,4 +60,13 @@ Content-Type: application/json
 	"accountName" : "Savings Account",
 	"initialCredit" : 1000
 }
+```
+
+
+## Tests
+
+You can run the tests with the following command
+
+```shell
+npm test
 ```
